@@ -1,5 +1,6 @@
 from ward import test
 
+
 def fizzbuzz(input: int) -> str:
     if input % 3 == 0 and input % 5 == 0:
         return "FizzBuzz"
@@ -11,30 +12,16 @@ def fizzbuzz(input: int) -> str:
     return str(input)
 
 
-@test("test 1 should return 1")
-def _():
-    assert fizzbuzz(1) == "1"
+for input, expected in [
+        (1, "1"),
+        (2, "2"),
+        (3, "Fizz"),
+        (6, "Fizz"),
+        (5, "Buzz"),
+        (10, "Buzz"),
+        (15, "FizzBuzz")
+]:
+    @test("test {input} should return {expected}")
+    def _(input=input, expected=expected):
+        assert fizzbuzz(input) == expected
 
-@test("test 2 should return 2")
-def _():
-    assert fizzbuzz(2) == "2"
-
-@test("test 3 should return Fizz")
-def _():
-    assert fizzbuzz(3) == "Fizz"
-
-@test("test 6 should return Fizz")
-def _():
-    assert fizzbuzz(6) == "Fizz"
-
-@test("test 5 should return Buzz")
-def _():
-    assert fizzbuzz(5) == "Buzz"
-
-@test("test 10 should return Buzz")
-def _():
-    assert fizzbuzz(10) == "Buzz"
-
-@test("test 15 should return FizzBuzz")
-def _():
-    assert fizzbuzz(15) == "FizzBuzz"
